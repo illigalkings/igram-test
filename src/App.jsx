@@ -6,6 +6,8 @@ import step3 from './assets/steps-3.webp';
 import igtvImg from './assets/igtv-downloader.webp';
 import reelsImg from './assets/reels-downloader.webp';
 import videoImg from './assets/video-downloader.webp';
+import AdComponent from "./AdComponent";
+
 // ===== Header Component =====
 function Header() {
   const [open, setOpen] = useState(false);
@@ -211,19 +213,9 @@ const Hero = () => {
   );
 };
 
+// ads
+<AdComponent />
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2295806962223513"
-     crossorigin="anonymous"></script>
-<!-- main -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2295806962223513"
-     data-ad-slot="7414611032"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
   
 
 // ===== Features Section =====
