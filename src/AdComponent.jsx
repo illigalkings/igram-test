@@ -1,3 +1,4 @@
+// AdComponent.jsx
 import { useEffect } from "react";
 
 const AdComponent = () => {
