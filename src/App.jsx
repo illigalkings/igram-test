@@ -211,7 +211,6 @@ const Hero = () => {
   );
 };
 
-// ads start
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2295806962223513"
      crossorigin="anonymous"></script>
@@ -226,7 +225,6 @@ const Hero = () => {
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
   
-// ads end
 
 // ===== Features Section =====
 function Features() {
