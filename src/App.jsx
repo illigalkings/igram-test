@@ -7,7 +7,6 @@ import igtvImg from './assets/igtv-downloader.webp';
 import reelsImg from './assets/reels-downloader.webp';
 import videoImg from './assets/video-downloader.webp';
 import AdComponent from "./AdComponent";
-
 // ===== Header Component =====
 function Header() {
   const [open, setOpen] = useState(false);
@@ -115,8 +114,7 @@ const Hero = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
 
-  // Using RapidAPI Instagram Reels Downloader
-  const RAPIDAPI_KEY = "3a52e48628msh7e38c374580cb8ap19d787jsn097e0447797c"; // Replace with your key
+  const RAPIDAPI_KEY = "3a52e48628msh7e38c374580cb8ap19d787jsn097e0447797c";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -124,17 +122,17 @@ const Hero = () => {
     setError("");
     setResult(null);
 
-    const cleanedUrl = cleanUrl(inputUrl);
+    const cleanedUrl = cleanUrl(inputUrl); // keep your own URL cleaning logic
 
     try {
-      const apiUrl = `https://instagram-reels-downloader-api.p.rapidapi.com/download?url=${encodeURIComponent(cleanedUrl)}`;
-      
+      const apiUrl = `https://instagram-downloader38.p.rapidapi.com/api/v2/downloader?url=${encodeURIComponent(cleanedUrl)}`;
+
       const response = await fetch(apiUrl, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'x-rapidapi-key': RAPIDAPI_KEY,
-          'x-rapidapi-host': 'instagram-reels-downloader-api.p.rapidapi.com'
-        }
+          "x-rapidapi-key": RAPIDAPI_KEY,
+          "x-rapidapi-host": "instagram-downloader38.p.rapidapi.com",
+        },
       });
 
       if (!response.ok) {
@@ -142,32 +140,25 @@ const Hero = () => {
       }
 
       const data = await response.json();
-      console.log('RapidAPI Response:', JSON.stringify(data, null, 2));
+      console.log("RapidAPI Response:", data);
 
-      // Extract the video URL from the 'medias' array
-      let videoUrl = null;
-      if (data.success && data.data && Array.isArray(data.data.medias)) {
-        const videoObject = data.data.medias.find(media => media.type === 'video');
-        if (videoObject) {
-          videoUrl = videoObject.url;
-        }
-      }
+      let videoUrl = data?.data?.video_url;
 
       if (!videoUrl) {
-        throw new Error('No video URL found in the response. This might not be a video post.');
+        throw new Error("No video URL found. This might not be a video post.");
       }
 
       setResult({ video: videoUrl });
-      setError('');
-
+      setInputUrl(""); 
+      setError("");
     } catch (err) {
-      console.error('RapidAPI Error:', err.message);
-      if (err.message.includes('API request failed: 401')) {
-        setError('API key is invalid. Please check your RapidAPI key.');
-      } else if (err.message.includes('API request failed: 429')) {
-        setError('Rate limit exceeded. Please try again later.');
+      console.error("RapidAPI Error:", err.message);
+      if (err.message.includes("401")) {
+        setError("Invalid API key. Please verify your key.");
+      } else if (err.message.includes("429")) {
+        setError("Rate limit exceeded. Try again later.");
       } else {
-        setError(err.message || 'Something went wrong. Please try again.');
+        setError(err.message || "Something went wrong.");
       }
     } finally {
       setLoading(false);
@@ -215,8 +206,6 @@ const Hero = () => {
 
 // ads
 <AdComponent />
-
-  
 
 // ===== Features Section =====
 function Features() {
@@ -483,7 +472,7 @@ function SkySection() {
           </div>
         </div>
         <div className="flex justify-center pt-7">
-        
+
         </div>
       </div>
     </section>
